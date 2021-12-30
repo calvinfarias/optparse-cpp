@@ -6,7 +6,7 @@ A C++ header that implements a python-like optparse
 
 This is an easy-to-implement command-line option for C++ programs. Take as an example the following code, where command-line arguments will set the options for a molecular dynamics simulation.
 
-```c++
+```C++
 auto opts = optparse {};
  
 // parameters: name, number of arguments, description, and default value
@@ -40,7 +40,7 @@ The optparse instance allows adding options via the **insert_option** method, wh
 
 Besides the `--help` option, `--verbose` also doesn't accept arguments. Zero as the number of arguments is the way to inform optparse that it should be interpreted as a boolean, in this case it must have a default value ("0" or "1"). Alternatively, a boolean option can be set with the **insert_option_boolean** method, which has as parameters the name, the behavior, and the description, such as in
 
-```c++
+```C++
 /*	as opposed to
 opts.insert_option("verbose", 0, "Verbosely list observers's data", "0");
 	it could be written as:
@@ -54,15 +54,15 @@ It's also possible to read all the user-defined options from a file using the `-
 
 ```bash
 $ cat <<-EOF > settings.txt
-> period: 0, 1
-> timestep: 0.1
-> verbose: 1
-> EOF
+period: 0, 1
+timestep: 0.1
+verbose: 1
+EOF
 
 $ ./optparse.x --load settings.txt 
 ```
 
-Of course file options are overwritten by command-line arguments. Therefore,
+Of course, command-line arguments overwrite the options read from the configuration file. Therefore,
 
 ```bash
 $ ./optparse.x --load settings.txt --timestep 0.01
@@ -76,7 +76,7 @@ will have all the options defined in the configuration file but the `timestep`, 
 
 Inside the code, the values can be obtained with the **retrieve** method, which specifies the returning type as a template parameter.
 
-```c++
+```C++
 // get the command-line --verbose option as a bool
 auto verbose = opts.retrieve<bool>("verbose");
 ```
@@ -90,7 +90,7 @@ auto period = opts.retrieve<double, double>("period");
 
 Alternatively, for options with more than two arguments, the values can be obtained by index, as in
 
-```c++
+```C++
 // get the command-line --period 1st option as a double
 // the index can be any value between 0 and the number of arguments -1
 auto starting_time = opts.retrieve<double, 0>("period");
