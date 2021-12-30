@@ -54,10 +54,10 @@ It's also possible to read all the user-defined options from a file using the `-
 
 ```bash
 $ cat <<-EOF > settings.txt
-> period: 0, 1
-> timestep: 0.1
-> verbose: 1
-> EOF
+period: 0, 1
+timestep: 0.1
+verbose: 1
+EOF
 $ ./optparse.x --load settings.txt 
 ```
 
