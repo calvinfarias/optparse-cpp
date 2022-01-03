@@ -20,7 +20,7 @@ if (auto ierr = opts.parse(argc, argv); ierr != 0)
 
 It is as easy as it seems. Compiling and running with the pre-defined `--help` option yields
 
-```bash
+```
 $ ./optparse.x --help
 Usage: ./optparse.x [OPTIONS]
 
